@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://data/ship/alsace.png" type="Texture" id=1]
+
+[node name="shipA" type="Node2D"]
+
+[node name="alsace" type="Sprite" parent="."]
+position = Vector2( 472, 63 )
+texture = ExtResource( 1 )
