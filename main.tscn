@@ -9,10 +9,8 @@
 [node name="shipA" parent="." instance=ExtResource( 1 )]
 position = Vector2( 78, 376 )
 gravity_scale = 0.0
+Shell = ExtResource( 3 )
+speed = 50
 
 [node name="target" parent="." instance=ExtResource( 2 )]
 position = Vector2( 870, 269 )
-
-[node name="obus" parent="." instance=ExtResource( 3 )]
-position = Vector2( 344, 402 )
-gravity_scale = 0.0

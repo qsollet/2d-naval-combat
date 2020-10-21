@@ -1,16 +1,21 @@
-extends RigidBody2D
+extends KinematicBody2D
 
-# Declare member variables here. Examples:
-export var speed = 400
-var direction = Vector2(0.0, -1.0)
-var rotation_deg = 78
+var speed = 750
+var velocity = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var rot_dir = direction.rotated(deg2rad(rotation_deg))
-	self.rotate(deg2rad(rotation_deg))
-	self.set_linear_velocity(rot_dir*speed)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
 	pass
+
+func start(pos, rot):
+	position = pos
+	rotation = rot
+	self.velocity = Vector2(self.speed, 0).rotated(rotation)
+
+func _physics_process(delta):
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.bounce(collision.normal)
+		if collision.collider.has_method("hit"):
+			if collision.collider.hit():
+				queue_free()

@@ -1,16 +1,13 @@
 extends Area2D
 
-# Declare member variables here. Examples:
 var text
 var timer
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	for child in get_children():
 		if child is RichTextLabel:
 		  text = child
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 

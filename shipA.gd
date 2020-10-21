@@ -1,13 +1,15 @@
 extends RigidBody2D
 
-# Declare member variables here. Examples:
-export var shell1 = ""
+export (PackedScene) var Shell
 export var speed = 10
+export var fire_timeout = 2
 var target = null
 var turret_rotation_speed = 1
+var can_shoot = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$ShootTimer.wait_time = self.fire_timeout
 	var elems = get_tree().get_nodes_in_group("target")
 	for elem in elems:
 		target = elem
@@ -15,6 +17,7 @@ func _ready():
 # function to rotate the turret
 func aim(delta):
 	if target:
+		# TODO fix seem to aim from the center of the ship instead of the turret
 		var target_rot = $turret1.get_angle_to(target.position)
 		if abs(target_rot) > 0.01:
 			var max_rot = delta * self.turret_rotation_speed
@@ -25,7 +28,15 @@ func aim(delta):
 			else:
 				$turret1.rotation -= max_rot
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func shoot():
+	if target and can_shoot:
+		print("shoot")
+		var b = Shell.instance()
+		b.start($turret1.position, $turret1.rotation)
+		get_parent().add_child(b)
+		can_shoot = false
+		$ShootTimer.start()
+
 func _process(delta):
 	# Ship movement
 	var velocity = Vector2()
@@ -41,3 +52,11 @@ func _process(delta):
 	
 	# Turret aim
 	aim(delta)
+	
+	# Shoot
+	if Input.is_action_pressed("ui_accept"):
+		shoot()
+
+func _on_ShootTimer_timeout():
+	print("reloaded")
+	can_shoot = true

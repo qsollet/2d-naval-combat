@@ -5,5 +5,5 @@
 [node name="turret" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-rotation = -1.5708
+rotation = 1.5708
 texture = ExtResource( 1 )

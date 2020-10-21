@@ -23,3 +23,9 @@ shape = SubResource( 1 )
 
 [node name="turret1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -101.448 )
+rotation = 3.14159
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
