@@ -1,10 +1,8 @@
 extends RigidBody2D
 
-
 # Declare member variables here. Examples:
 export var shell1 = ""
 export var speed = 10
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
