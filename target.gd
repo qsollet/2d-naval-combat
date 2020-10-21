@@ -13,5 +13,8 @@ func _on_target_body_shape_entered(body_id, body, body_shape, local_shape):
 	$Timer.start()
 
 func _on_Timer_timeout():
-	print("Timeout")
 	$RichTextLabel.set_text("")
+
+func hit():
+	print("target hit")
+	return true

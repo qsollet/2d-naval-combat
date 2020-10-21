@@ -11,16 +11,17 @@ func _ready():
 func start(pos, rot):
 	position = pos
 	rotation = rot
-	self.velocity = Vector2(self.speed, 0).rotated(rotation)
+	velocity = Vector2(speed, 0).rotated(rotation)
 
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		velocity = velocity.bounce(collision.normal)
+		print(collision.collider.name)
+		print(collision.collider.parent.name)
 		if collision.collider.has_method("hit"):
 			if collision.collider.hit():
 				queue_free()
-
 
 func _on_Timer_timeout():
 	queue_free()
