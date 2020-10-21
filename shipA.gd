@@ -18,7 +18,7 @@ func _ready():
 func aim(delta):
 	if target:
 		# TODO fix seem to aim from the center of the ship instead of the turret
-		var target_rot = $turret1.get_angle_to(target.position)
+		var target_rot = $turret1.get_angle_to(target.global_position)
 		if abs(target_rot) > 0.01:
 			var max_rot = delta * self.turret_rotation_speed
 			if max_rot > abs(target_rot):
