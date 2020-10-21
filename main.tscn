@@ -12,5 +12,9 @@ gravity_scale = 0.0
 Shell = ExtResource( 3 )
 speed = 50
 
+[node name="Camera2D" type="Camera2D" parent="shipA"]
+current = true
+zoom = Vector2( 2, 2 )
+
 [node name="target" parent="." instance=ExtResource( 2 )]
 position = Vector2( 870, 269 )
