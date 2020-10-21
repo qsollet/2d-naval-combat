@@ -5,25 +5,23 @@
 [ext_resource path="res://turret.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 60.9166
-height = 816.991
+radius = 62.5923
+height = 823.045
 
 [node name="shipA" type="RigidBody2D"]
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 
-[node name="alsace" type="Sprite" parent="."]
-position = Vector2( 1.39471, -1.50827 )
-rotation = -1.5708
-texture = ExtResource( 1 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.39471, -1.50827 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
+[node name="alsace" type="Sprite" parent="."]
+position = Vector2( 1.39471, -1.50827 )
+texture = ExtResource( 1 )
+
 [node name="turret1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, -101.448 )
-rotation = 3.14159
+position = Vector2( 100, 0 )
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 2.0

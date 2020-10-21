@@ -32,7 +32,7 @@ func shoot():
 	if target and can_shoot:
 		print("shoot")
 		var b = Shell.instance()
-		b.start($turret1.position, $turret1.rotation)
+		b.start($turret1.global_position, $turret1.global_rotation)
 		get_parent().add_child(b)
 		can_shoot = false
 		$ShootTimer.start()
