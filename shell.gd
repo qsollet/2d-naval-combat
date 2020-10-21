@@ -7,7 +7,6 @@ var rotation_deg = 78
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	var rot_dir = direction.rotated(deg2rad(rotation_deg))
 	self.rotate(deg2rad(rotation_deg))
 	self.set_linear_velocity(rot_dir*speed)
