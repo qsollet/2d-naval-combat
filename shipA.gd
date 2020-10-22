@@ -9,9 +9,11 @@ func _ready():
 	for elem in elems:
 		target = elem
 	$turret1.target = target
+	$turret2.target = target
 
 func shoot():
 	$turret1.shoot()
+	$turret2.shoot()
 
 func _process(delta):
 	# Ship movement

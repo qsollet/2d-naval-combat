@@ -24,3 +24,8 @@ texture = ExtResource( 1 )
 [node name="turret1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 100, 0 )
 Shell = ExtResource( 4 )
+
+[node name="turret2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -296.334, 0 )
+rotation = 3.14159
+Shell = ExtResource( 4 )
