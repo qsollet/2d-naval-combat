@@ -21,10 +21,10 @@ position = Vector2( 870, 269 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 3580, 1760 )
+motion_mirroring = Vector2( 4096, 2160 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 3 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 3580, 1760 )
+region_rect = Rect2( 0, 0, 4096, 2160 )
