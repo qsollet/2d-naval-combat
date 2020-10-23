@@ -31,3 +31,11 @@ func _process(delta):
 	# Shoot
 	if Input.is_action_pressed("ui_accept"):
 		shoot()
+		
+	# Camera zoom
+	if Input.is_action_pressed("ui_page_up"):
+		$Camera2D.zoom.x += 0.1
+		$Camera2D.zoom.y += 0.1
+	if Input.is_action_pressed("ui_page_down"):
+		$Camera2D.zoom.x -= 0.1
+		$Camera2D.zoom.y -= 0.1
