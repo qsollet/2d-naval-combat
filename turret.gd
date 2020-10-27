@@ -32,7 +32,7 @@ func aim(delta):
 func shoot():
 	if target and can_shoot:
 		var b = Shell.instance()
-		b.start(global_position, global_rotation)
+		b.start(global_position, $muzzle.global_rotation)
 		get_tree().get_root().add_child(b)
 		can_shoot = false
 		$ShootTimer.start()
