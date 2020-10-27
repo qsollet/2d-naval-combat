@@ -4,7 +4,6 @@ export var acceleration = 100
 export var decceleration = -10
 export var brake = -100
 export var max_speed = 600
-export var mass = 2
 
 var velocity = Vector2.ZERO
 var rear_wheel_angle = 20
@@ -51,7 +50,7 @@ func _physics_process(delta):
 	velocity = new_heading * velocity.length()
 	rotation = new_heading.angle()
 	
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 	
 	# Shoot
 	if Input.is_action_pressed("ui_accept"):
