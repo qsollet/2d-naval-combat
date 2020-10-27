@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-export var acceleration = 1800
-export var decceleration = 300
-export var brake = 3000
+export var acceleration = 100
+export var decceleration = -10
+export var brake = -100
 export var max_speed = 600
 export var mass = 2
 
@@ -24,15 +24,18 @@ func shoot():
 	$turret1.shoot()
 	$turret2.shoot()
 
-func _process(delta):
+func _physics_process(delta):
 	# Ship movement
-	velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
-		velocity = transform.x * acceleration
-	#else:
-	#	velocity = transform.x * decceleration
+		velocity += transform.x * acceleration
+		if velocity.length() > max_speed:
+			velocity = velocity.clamped(max_speed)
+	elif velocity.length() > 0:
+		velocity += transform.x * decceleration
 	if Input.is_action_pressed("ui_down"):
-		pass
+		velocity += transform.x * brake
+		if velocity.length() < 0:
+			velocity = Vector2.ZERO
 	
 	# only dealing with rear steering
 	var rear_steer_angle = 0.0
