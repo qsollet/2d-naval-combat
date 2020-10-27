@@ -8,8 +8,6 @@
 
 [node name="shipA" parent="." instance=ExtResource( 1 )]
 position = Vector2( 78, 376 )
-gravity_scale = 0.0
-speed = 200
 
 [node name="Camera2D" type="Camera2D" parent="shipA"]
 current = true

@@ -1,6 +1,15 @@
-extends RigidBody2D
+extends KinematicBody2D
 
-export var speed = 10
+export var acceleration = 1800
+export var decceleration = 300
+export var brake = 3000
+export var max_speed = 600
+export var mass = 2
+
+var velocity = Vector2.ZERO
+var rear_wheel_angle = 20
+var front_wheel_angle = 0
+
 var target = null
 
 # Called when the node enters the scene tree for the first time.
@@ -17,16 +26,29 @@ func shoot():
 
 func _process(delta):
 	# Ship movement
-	var velocity = Vector2()
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("ui_down"):
-		velocity.y += 1
+	velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1
-	self.position += velocity * self.speed * delta
+		velocity = transform.x * acceleration
+	#else:
+	#	velocity = transform.x * decceleration
+	if Input.is_action_pressed("ui_down"):
+		pass
+	
+	# only dealing with rear steering
+	var rear_steer_angle = 0.0
+	if Input.is_action_pressed("ui_right"):
+		rear_steer_angle -= deg2rad(rear_wheel_angle)
+	if Input.is_action_pressed("ui_left"):
+		rear_steer_angle += deg2rad(rear_wheel_angle)
+	
+	var rear_wheel_position = $rear_wheel.global_position + velocity.rotated(rear_steer_angle) * delta
+	var front_wheel_position = $front_wheel.global_position + velocity * delta
+	
+	var new_heading = (front_wheel_position - rear_wheel_position).normalized()
+	velocity = new_heading * velocity.length()
+	rotation = new_heading.angle()
+	
+	move_and_slide(velocity)
 	
 	# Shoot
 	if Input.is_action_pressed("ui_accept"):
