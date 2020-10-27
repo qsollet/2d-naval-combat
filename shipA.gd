@@ -52,6 +52,12 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity)
 	
+	if velocity.length() < 0.1:
+		velocity = Vector2.ZERO
+		$back_waves.emitting = false
+	else:
+		$back_waves.emitting = true
+	
 	# Shoot
 	if Input.is_action_pressed("ui_accept"):
 		shoot()
